@@ -65,7 +65,7 @@ ui <- fluidPage(
   
   mainPanel(
     titlePanel("Timelines"),
-    plotOutput("timelines", width = 800, height = 300),
+    plotOutput("timelines", width = 1200, height = 500),
     titlePanel("Balances"),
     verbatimTextOutput("balances")  
   )

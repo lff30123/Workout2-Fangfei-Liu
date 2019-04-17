@@ -65,9 +65,9 @@ ui <- fluidPage(
   
   mainPanel(
     titlePanel("Timelines"),
-    plotOutput("timelines", width = 600, height = 300),
+    plotOutput("timelines", width = 800, height = 300),
     titlePanel("Balances"),
-    verbatimTextOutput("balances")
+    verbatimTextOutput("balances")  
   )
 )
 
@@ -76,12 +76,34 @@ ui <- fluidPage(
 
 server <- function(input, output) {
   
+  # Define functions for future_value, annnuity, and growing annuity
+  
+  #' @title future value
+  #' @description calculates future value of an investment
+  #' @param amount initial invested amount
+  #' @param rate annual rate of return
+  #' @param years number of years
+  #' @return computed future value
   future_value <- function(amount,rate,years){end_return = amount*(1+rate)^years
   return(end_return)}
   
+  
+  #' @title Future value of Annuity
+  #' @description calculates future value of annuity
+  #' @param contrib contributed amount
+  #' @param rate annual rate of return
+  #' @param years number of years
+  #' @return computed future value of annuity
   annuity <- function(contrib,rate,years) {result <- contrib*((1+rate)^years-1)/rate
   return(result)}
   
+  #' @title Future value of Growing Annuity
+  #' @description calculates future value of growing annuity
+  #' @param contrib contributed amount
+  #' @param rate annual rate of return
+  #' @param growth annual growth rate
+  #' @param years number of years
+  #' @return computed future value of growing annuity
   growing_annuity <- function(contrib,rate,growth,years){result <- contrib*((1+rate)^years-(1+growth)^years)/(rate-growth)
   return(result) }
   
